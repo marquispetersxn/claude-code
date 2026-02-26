@@ -1,0 +1,20 @@
+{
+  "_comment": "Project .mcp.json — committed to git, uses env vars for portability across machines",
+
+  "local-tools": {
+    "command": "node",
+    "args": ["./servers/local-tools.mjs"],
+    "env": {
+      "NODE_ENV": "development"
+    }
+  },
+
+  "partner-machine": {
+    "type": "http",
+    "url": "http://${HUB_PARTNER_IP}:${HUB_PARTNER_PORT}/mcp",
+    "headers": {
+      "Authorization": "Bearer ${HUB_SHARED_SECRET}",
+      "X-Machine-ID": "${HUB_MACHINE_ID}"
+    }
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "description": "Networked dev hub hooks — session sync, agent coordination, and status updates",
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash scripts/session-sync.sh",
+            "timeout": 15
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash scripts/agent-stop-notify.sh",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash scripts/update-hub-status.sh",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  }
+}
